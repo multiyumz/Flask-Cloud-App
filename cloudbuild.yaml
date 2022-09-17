@@ -1,3 +1,4 @@
+steps:
 # Build the container image
 - name: 'gcr.io/cloud-builders/docker'
   args: ['build', '-t', 'eu.gcr.io/cloud-build-362809/cloud-build ', '.']
@@ -10,3 +11,5 @@
   args: ['run', 'deploy', 'cloud-build', '--image', 'eu.gcr.io/cloud-build-362809/cloud-build ', '--region', 'us-central1', '--platform', 'managed']
 images:
 - eu.gcr.io/cloud-build-362809/cloud-build
+
+
