@@ -1,0 +1,12 @@
+# Build the container image
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'eu.gcr.io/cloud-build-362809/cloud-build ', '.']
+# Push the container image to Container Registry
+- name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'eu.gcr.io/cloud-build-362809/cloud-build ']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'cloud-build', '--image', 'eu.gcr.io/cloud-build-362809/cloud-build ', '--region', 'us-central1', '--platform', 'managed']
+images:
+- eu.gcr.io/cloud-build-362809/cloud-build
